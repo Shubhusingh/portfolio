@@ -2,7 +2,7 @@
     "name": "My portfolio",
     "short_name": "My portfolio",
     "description": "An awesome portfolio website built with HTML",
-    "start_url": "/index.html",
+    "start_url": "https://shubhusingh.github.io/portfolio/",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#000000",
