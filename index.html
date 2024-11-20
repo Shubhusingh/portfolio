@@ -14,6 +14,10 @@
 	<link rel="stylesheet" href="assets/css/meyawo.css">
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+  <!-- Splash Screen -->
+  <div class="splash-screen">
+    <div class="splash-text">Welcome to My PWA!</div>
+  </div>
 
     <!-- Page Navbar -->
     <nav class="custom-navbar" data-spy="affix" data-offset-top="20">
@@ -422,6 +426,12 @@
               });
           });
         }
+        window.addEventListener('load', () => {
+      setTimeout(() => {
+        const splashScreen = document.querySelector('.splash-screen');
+        splashScreen.style.display = 'none'; // Hide splash screen
+      }, 2000);  // Adjust this duration based on your preference
+    });
       </script>
 </body>
 </html>
