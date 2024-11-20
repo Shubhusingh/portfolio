@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Shubham Kumar Singh Portfolio.">
     <meta name="author" content="Devcrud">
+    <meta name="theme-color" content="#000000">
+    <link rel="manifest" href="/manifest.json">
     <title>Shubham Kumar Singh Portfolio</title>
     <!-- font icons -->
     <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
@@ -64,6 +66,8 @@
 
     <!-- about section -->
     <section class="section pt-0" id="about">
+       
+
         <!-- container -->
         <div class="container text-center">
             <!-- about wrapper -->
@@ -94,14 +98,14 @@
     <section class="section" id="service">
         <div class="container text-center">
             <p class="section-subtitle">What I Do ?</p>
-            <h6 class="section-title mb-6">Service</h6>
+            <h6 class="section-title mb-6">Web Developement(Laravel)</h6>
             <!-- row -->
             <div class="row">
                 <div class="col-md-6 col-lg-3">
                     <div class="service-card">
                         <div class="body">
                             <img src="assets/imgs/pencil-case.svg" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page" class="icon">
-                            <h6 class="title">Adipisicing</h6>
+                            <h6 class="title">Wordpress</h6>
                             <p class="subtitle">Labore velit culpa adipisci excepturi consequuntur itaque in nam molestias dolorem iste quod.</p>
                         </div>
                     </div>
@@ -110,7 +114,7 @@
                     <div class="service-card">
                         <div class="body">
                             <img src="assets/imgs/responsive.svg" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page" class="icon">
-                            <h6 class="title">Sapiente</h6>
+                            <h6 class="title">Shopify</h6>
                             <p class="subtitle">Labore velit culpa adipisci excepturi consequuntur itaque in nam molestias dolorem iste quod.</p>
                         </div>
                     </div>
@@ -142,6 +146,7 @@
         <div class="container text-center">
             <p class="section-subtitle">What I Did ?</p>
             <h6 class="section-title mb-6">Portfolio</h6>
+            <button id="installBtn" style="display:none;">Install PWA</button>
             <!-- row -->
             <div class="row">
                 <div class="col-md-4">
@@ -369,5 +374,53 @@
     })();
     </script>
     <!--End of Tawk.to Script-->
+
+    <script>
+        let deferredPrompt;
+        const installButton = document.getElementById('installBtn');
+    
+        // Listen for the 'beforeinstallprompt' event
+        window.addEventListener('beforeinstallprompt', (e) => {
+          // Prevent the default mini-infobar or popup from showing
+          e.preventDefault();
+          // Save the event for later use
+          deferredPrompt = e;
+          // Show the install button
+          installButton.style.display = 'block';
+    
+          // When the user clicks the install button
+          installButton.addEventListener('click', () => {
+            // Hide the install button
+            installButton.style.display = 'none';
+            // Show the install prompt
+            deferredPrompt.prompt();
+            
+            // Wait for the user to respond to the prompt
+            deferredPrompt.userChoice
+              .then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                  console.log('User accepted the install prompt');
+                } else {
+                  console.log('User dismissed the install prompt');
+                }
+                deferredPrompt = null;
+              });
+          });
+        });
+      </script>
+    
+      <script>
+        if ('serviceWorker' in navigator) {
+          window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/service-worker.js')
+              .then((registration) => {
+                console.log('Service Worker registered with scope: ', registration.scope);
+              })
+              .catch((error) => {
+                console.log('Service Worker registration failed: ', error);
+              });
+          });
+        }
+      </script>
 </body>
 </html>
