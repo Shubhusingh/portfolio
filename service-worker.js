@@ -5,8 +5,7 @@ self.addEventListener('install', (event) => {
           '/portfolio',
           '/portfolio/index.html',
           '/portfolio/manifest.json',
-          '/portfolio/assets/imgs/shubham.png',
-          '/portfolio/assets/imgs/shubham.png',
+        
         ]);
       })
     );
